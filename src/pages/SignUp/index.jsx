@@ -38,7 +38,7 @@ function SignUp() {
             onChange={(e) => setPassword(e.target.value)}
           />
 
-          <buttom type="submit">Register</buttom>
+          <button type="submit">Register</button>
         </form>
 
         <Link to="/">Do you have an account? Sign in</Link>
