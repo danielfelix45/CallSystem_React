@@ -1,13 +1,24 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import './style.css';
 
 import logo from '../../assets/logo.png'
 import { Link } from 'react-router-dom';
+import {AuthContext} from '../../contexts/auth'
 
 function SignUp() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const {signUp, loadingAuth} = useContext(AuthContext);
+
+  async function handleSubmit(e){
+    e.preventDefault();
+
+    if(name !== '' && email !== ''&& password !== ''){
+     await signUp(name, email, password)
+    }
+  }
 
   return (
     <div className='container-center'>
@@ -16,7 +27,7 @@ function SignUp() {
           <img src={logo} alt="System logo" />
         </div>
 
-        <form>
+        <form onSubmit={handleSubmit}>
           <h1>New Account</h1>
 
           <input
@@ -38,7 +49,9 @@ function SignUp() {
             onChange={(e) => setPassword(e.target.value)}
           />
 
-          <button type="submit">Register</button>
+          <button type="submit">
+            {loadingAuth ? "Loading..." : "Register"}
+          </button>
         </form>
 
         <Link to="/">Do you have an account? Sign in</Link>
