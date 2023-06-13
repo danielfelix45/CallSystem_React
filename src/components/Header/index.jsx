@@ -22,7 +22,7 @@ function Header() {
 
       <Link to="/customers">
         <FiUser color="#fff" size={24} />
-        Calls
+        Clients
       </Link>
 
       <Link to="/profile">

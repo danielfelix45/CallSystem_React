@@ -1,0 +1,72 @@
+.container{
+  display: flex;
+  background-color: #f8f8f8;
+  border-radius: 5px;
+  padding: 0.8rem;
+  align-items: center;
+  matgin-bottom: 1rem; 
+}
+
+.label-avatar{
+  width: 17.5rem;
+  height: 17.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.label-avatar input{
+  display: none;
+}
+
+.label-avatar span{
+  z-index: 99;
+  position: absolute;
+  opacity: 0.7;
+  transition: all 0.5s;
+}
+
+.label-avatar span:hover{
+  opacity: 1;
+  transform: scale(1.4);
+}
+
+.form-profile img{
+  margin-bottom: 1rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.form-profile label{
+  margin-bottom: 0.5rem;
+  font-size: 1.4rem;
+}
+
+.form-profile input, textarea, select{
+  margin-bottom: 1rem;
+  padding: 0.7rem;
+  border: 0;
+  border-radius: 5px;
+  max-width: 37.5rem;
+}
+
+.form-profile input:disabled{
+  cursor: not-allowed;
+}
+
+.form-profile button{
+  max-width: 37.5rem;
+}
+
+.logout-btn{
+  padding: 0.5rem 1.25rem;
+  border: 1px solid #121212;
+  background-color: transparent;
+  border-radius: 5px;
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
