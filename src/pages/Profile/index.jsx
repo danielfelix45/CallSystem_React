@@ -10,9 +10,29 @@ import { FiSettings, FiUpload } from 'react-icons/fi';
 import './style.css';
 
 function Profile(){
-  const {user} = useContext(AuthContext);
+  const {user, storageUser, setUser, logOut} = useContext(AuthContext);
 
   const [avatarUrl, setAvatarUrl] = useState(user && user.avatarUrl);
+  const [imageAvatar, setImageAvatar] = useState(null);
+
+  const [name, setName] = useState(user && user.name);
+  const [email, setEmail] = useState(user && user.email);
+
+  function handleFile(e){
+    if(e.target.files[0]){
+      const image = e.target.files[0];
+
+      if(image.type === 'image/jpeg' || image.type === 'image/png'){
+        setImageAvatar(image)
+        setAvatarUrl(URL.createObjectURL(image))
+      }else{
+        alert("Upload a JPEG or PNG type image");
+        setAvatarUrl(null);
+        return;
+      }
+
+    }
+  }
 
   return(
     <div>
@@ -30,7 +50,7 @@ function Profile(){
                 <FiUpload color='#fff' size={25} />
               </span>
 
-              <input type="file" accept='image/*' /> <br />
+              <input type="file" accept='image/*' onChange={handleFile} /> <br />
               {avatarUrl === null ? 
               (<img src={avatar} alt="Foto de perfil" width={250} height={250} />) : 
               (<img src={avatarUrl} alt="Foto de perfil" width={250} height={250} />)
@@ -38,9 +58,9 @@ function Profile(){
             </label>
 
             <label>Name</label>
-            <input type="text" placeholder='Your name...' />
+            <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
             <label>Email</label>
-            <input type="text" placeholder='test@test.com' disabled={true} />
+            <input type="text" value={email} disabled={true} />
 
             <button type='submit'>Save</button>
 
@@ -48,7 +68,7 @@ function Profile(){
         </div>
 
         <div className="container">
-          <button className='logout-btn'>Leave</button>
+          <button className='logout-btn' onClick={() => logOut()}>Leave</button>
         </div>
 
       </div>
