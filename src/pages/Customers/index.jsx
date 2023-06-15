@@ -32,7 +32,7 @@ function Customers(){
         toast.error("Error when registering");
       })
     }else{
-      toast.error("Fill in all fields");
+      toast.error("Fill in all form fields");
     }
   }
 
@@ -57,14 +57,14 @@ function Customers(){
             <label>Registration Number</label>
             <input 
               type="text" 
-              placeholder='Company Name'
+              placeholder='Registration Number'
               value={registrationNumber}
               onChange={(e) => setRegistrationNumber(e.target.value)}
             />
             <label>Address</label>
             <input 
               type="text" 
-              placeholder='Company Name'
+              placeholder='Address'
               value={address}
               onChange={(e) => setAddress(e.target.value)}
             />
