@@ -122,7 +122,7 @@ function Profile(){
             <label>Email</label>
             <input type="text" value={email} disabled={true} />
 
-            <button type='submit'>Save</button>
+            <button type='submit'>Register</button>
 
           </form>
         </div>
