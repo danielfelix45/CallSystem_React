@@ -95,7 +95,7 @@ function Profile(){
   }
 
   return(
-    <div>
+    <>
       <Header />
 
       <div className='content'>
@@ -133,7 +133,7 @@ function Profile(){
 
       </div>
 
-    </div>
+    </>
   )
 }
 
