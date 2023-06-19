@@ -5,7 +5,8 @@ import Title from '../../components/Title';
 import { FiPlusCircle } from 'react-icons/fi';
 import {AuthContext} from '../../contexts/auth';
 import { db } from '../../services/firebaseConnection';
-import { collection, getDocs, getDoc, doc } from 'firebase/firestore';
+import { collection, getDocs, getDoc, doc, addDoc } from 'firebase/firestore';
+import {toast} from 'react-toastify';
 
 import './style.css';
 
@@ -28,7 +29,7 @@ function New(){
       .then((snapshot) => {
         let list = [];
 
-        // Passar os dados do banco de dados para lista.
+        // Passar os items(clientes) do banco de dados para lista.
         snapshot.forEach((doc) => {
           list.push({
             id: doc.id,
@@ -60,6 +61,31 @@ function New(){
     loadClients();
   }, [])
 
+  async function handleRegister(e){
+    e.preventDefault();
+
+    // Registrar um chamado
+    await addDoc(collection(db, "calls"), {
+      created: new Date(),
+      client: clients[clientSelected].companyName,
+      clientId: clients[clientSelected].id,
+      topic: topic,
+      complement: complement,
+      status: status,
+      userId: user.uid,
+    })
+    .then(() => {
+      toast.success('Registered with success!')
+      setClientSelected(0);
+      setComplement('');
+    })
+    .catch((error) => {
+      toast.error('Oops, error registering, try again later')
+      console.log(error);
+    })
+
+  }
+
 
   function handleOptionChange(e){
     setStatus(e.target.value);
@@ -84,7 +110,7 @@ function New(){
         </Title>
 
         <div className='container'>
-          <form className='form-profile'>
+          <form className='form-profile' onSubmit={handleRegister}>
 
             <label>Clients</label>
             {
