@@ -37,7 +37,7 @@ function Customers(){
   }
 
   return(
-    <div>
+    <>
       <Header />
 
       <div className='content'>
@@ -75,7 +75,7 @@ function Customers(){
 
       </div>
 
-    </div>
+    </>
   )
 }
 
