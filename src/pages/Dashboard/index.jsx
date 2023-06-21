@@ -25,8 +25,10 @@ function Dashboard() {
   const { logOut } = useContext(AuthContext)
 
   const [calls, setCalls] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [isEmpty, setIsEmpty] = useState(false)
+  const [loading, setLoading] = useState(true) // Loading de quando está buscando todos os items.
+  const [isEmpty, setIsEmpty] = useState(false) // Armazenar lista vazia de chamados.
+  const [lastDocs, setlastDocs] = useState() // Armazenar último item da lista de Chamados.
+  const [loadingMore, setLoadingMore] = useState(false) // Loading de quando tá buscando mais itens.
 
   useEffect(() => {
     async function loadCalls() {
@@ -66,11 +68,34 @@ function Dashboard() {
         })
       })
 
+      // Variável que armazena o último item renderizado da lista.
+      const lastDoc = querySnapshot.docs[querySnapshot.docs.length - 1]
+      console.log(lastDoc)
+
       setCalls(calls => [...calls, ...list])
+      setlastDocs(lastDoc)
     } else {
       // Se a lista estiver vazia entra aqui.
       setIsEmpty(true)
     }
+
+    setLoadingMore(false)
+  }
+
+  async function handleMore() {
+    setLoadingMore(true)
+
+    // Aqui a query que guarda a requisição do banco de dados.
+    const q = query(
+      listRef,
+      orderBy('created', 'desc'),
+      startAfter(lastDocs),
+      limit(5)
+    )
+    // Aqui faz a requisição.
+    const querySnapshot = await getDocs(q)
+    // Aqui passa os dados para a função updateState que irá percorrer a lista e mostrar na tela.
+    await updateState(querySnapshot)
   }
 
   if (loading) {
@@ -135,7 +160,10 @@ function Dashboard() {
                         <td data-label="Status">
                           <span
                             className="badge"
-                            style={{ backgroundColor: '#999' }}
+                            style={{
+                              backgroundColor:
+                                item.status === 'Open' ? '#5CB85C' : '#999'
+                            }}
                           >
                             {item.status}
                           </span>
@@ -160,12 +188,17 @@ function Dashboard() {
                   })}
                 </tbody>
               </table>
+
+              {loadingMore && <h3>Looking for more calls...</h3>}
+              {!loadingMore && !isEmpty && (
+                <button className="btn-more" onClick={handleMore}>
+                  Search more
+                </button>
+              )}
             </>
           )}
         </>
       </div>
-
-      <button>Leave</button>
     </>
   )
 }

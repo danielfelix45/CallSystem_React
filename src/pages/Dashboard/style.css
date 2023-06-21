@@ -78,6 +78,22 @@ table td .action svg{
   vertical-align: middle;
 }
 
+table td .badge{
+  padding: 0.18rem;
+  border-radius: 0.18rem;
+  color: #fff;
+}
+
+.btn-more{
+  margin: 1.5rem 0;
+  padding: 0.5rem 1rem;
+  background-color: #181C2E;
+  border: 0;
+  border-radius: 0.25rem;
+  font-size: 1.1rem;
+  color: #fff;
+}
+
 @media screen and (max-width: 600px){
   table{
     border: 0;
