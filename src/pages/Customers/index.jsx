@@ -47,7 +47,7 @@ function Customers(){
 
         <div className='container'>
           <form className='form-profile' onSubmit={handleRegister}>
-            <label>Tranding Name</label>
+            <label>Company Name</label>
             <input 
               type="text" 
               placeholder='Company Name'

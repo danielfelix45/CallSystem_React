@@ -75,7 +75,7 @@ function New(){
       userId: user.uid,
     })
     .then(() => {
-      toast.success('Registered with success!')
+      toast.success('Registered successfully!')
       setClientSelected(0);
       setComplement('');
     })
