@@ -70,7 +70,6 @@ function Dashboard() {
 
       // Variável que armazena o último item renderizado da lista.
       const lastDoc = querySnapshot.docs[querySnapshot.docs.length - 1]
-      console.log(lastDoc)
 
       setCalls(calls => [...calls, ...list])
       setlastDocs(lastDoc)
@@ -104,7 +103,7 @@ function Dashboard() {
         <Header />
 
         <div className="content">
-          <Title name="Tickets">
+          <Title name="Calls">
             <FiMessageSquare size={25} />
           </Title>
 
@@ -121,7 +120,7 @@ function Dashboard() {
       <Header />
 
       <div className="content">
-        <Title name="Tickets">
+        <Title name="Calls">
           <FiMessageSquare size={25} />
         </Title>
 
@@ -176,12 +175,13 @@ function Dashboard() {
                           >
                             <FiSearch color="#fff" size={17} />
                           </button>
-                          <button
+                          <Link
+                            to={`/new/${item.id}`}
                             className="action"
                             style={{ backgroundColor: '#F6A935' }}
                           >
                             <FiEdit2 color="#fff" size={17} />
-                          </button>
+                          </Link>
                         </td>
                       </tr>
                     )
