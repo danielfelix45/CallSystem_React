@@ -1,8 +1,8 @@
 ﻿# Call System - REACT
 
 <div align="center">
-<img src="https://github.com/danielfelix45/CallSystem_React/assets/81331726/941b6f60-5e85-427c-b9e1-4775aba2bdb3" width="700px" />
-<img src="https://github.com/danielfelix45/CallSystem_React/assets/81331726/f5e54fdf-d956-47f1-aab6-ebd778335d82" width="700px" />
+<img src="https://github.com/danielfelix45/CallSystem_React/assets/81331726/941b6f60-5e85-427c-b9e1-4775aba2bdb3" width="350px" />
+<img src="https://github.com/danielfelix45/CallSystem_React/assets/81331726/f5e54fdf-d956-47f1-aab6-ebd778335d82" width="350px" />
 </div>
 
 ## 🛠️ Built with
