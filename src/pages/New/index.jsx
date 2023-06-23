@@ -216,9 +216,9 @@ function New() {
               <input
                 type="radio"
                 name="radio"
-                value="Answered"
+                value="Attended"
                 onChange={handleOptionChange}
-                checked={status === 'Answered'}
+                checked={status === 'Attended'}
               />
               <span>Attended</span>
             </div>

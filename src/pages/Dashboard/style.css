@@ -84,6 +84,12 @@ table td .badge{
   color: #fff;
 }
 
+h3{
+  text-align: center;
+  padding: 0.6rem;
+  font-size: 1.1rem;
+}
+
 .btn-more{
   margin: 1.5rem 0;
   padding: 0.5rem 1rem;

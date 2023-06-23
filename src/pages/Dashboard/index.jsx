@@ -16,6 +16,8 @@ import { db } from '../../services/firebaseConnection'
 import { Link } from 'react-router-dom'
 import { format } from 'date-fns'
 
+import Modal from '../../components/Modal'
+
 import './style.css'
 
 // Aqui é a referência da query.
@@ -29,6 +31,9 @@ function Dashboard() {
   const [isEmpty, setIsEmpty] = useState(false) // Armazenar lista vazia de chamados.
   const [lastDocs, setlastDocs] = useState() // Armazenar último item da lista de Chamados.
   const [loadingMore, setLoadingMore] = useState(false) // Loading de quando tá buscando mais itens.
+
+  const [showPostModal, setShowPostModal] = useState(false) // Controla os estados do modal.
+  const [detailsModal, setDetailsModal] = useState({}) // Aqui armazena os detalhes dos itens no modal
 
   useEffect(() => {
     async function loadCalls() {
@@ -95,6 +100,12 @@ function Dashboard() {
     const querySnapshot = await getDocs(q)
     // Aqui passa os dados para a função updateState que irá percorrer a lista e mostrar na tela.
     await updateState(querySnapshot)
+  }
+
+  // Função que abre o Modal e passa os items pro modal
+  function toggleModal(item) {
+    setShowPostModal(!showPostModal)
+    setDetailsModal(item)
   }
 
   if (loading) {
@@ -172,6 +183,7 @@ function Dashboard() {
                           <button
                             className="action"
                             style={{ backgroundColor: '#3583F6' }}
+                            onClick={() => toggleModal(item)}
                           >
                             <FiSearch color="#fff" size={17} />
                           </button>
@@ -199,6 +211,13 @@ function Dashboard() {
           )}
         </>
       </div>
+
+      {showPostModal && (
+        <Modal
+          conteudo={detailsModal}
+          close={() => setShowPostModal(!showPostModal)}
+        />
+      )}
     </>
   )
 }
